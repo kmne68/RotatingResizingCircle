@@ -105,10 +105,8 @@ public class RotatingResizingCircle {
             cornerY += 1; // * YDiameter;
         }
         
-        System.out.println("x = " + x1 + "     y = " + y1 + "     w = " + w + "     h = " + h );
-        
-        c.setFrame(x1, y1, w, h);
-        c2.setFrame(x2, y2, w, h);
+        c.setFrame(x1, y1, w, h);       // Unfilled circle
+        c2.setFrame(x2, y2, w, h);      // Black filled circle
     }
     
     private class ImageRotationComponent extends JComponent {
@@ -119,7 +117,7 @@ public class RotatingResizingCircle {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             
-            // Points for first gear
+            // Points for a crude, stationary gear drawn in upper left corner.
             p.addPoint(7, 1);
             p.addPoint(9, 1);
             p.addPoint(9, 3);
@@ -147,30 +145,20 @@ public class RotatingResizingCircle {
             p.addPoint(3, 5);
             p.addPoint(4, 4);
             p.addPoint(6, 3);
-            p.addPoint(7, 3); 
-            
-  //          points1 = getOriginalPoints(1);
-            
-  //          poly1 = polygonize(points1);
+            p.addPoint(7, 3);  
             
             Graphics2D g2 = (Graphics2D) g.create();
-            polyAngle++;
-            if(polyAngle >= 360)
-            {
-                polyAngle = 0;
-            }
+            angle += 100;       // Changing angle turns the objects
             
-            angle += 100;
-            
-            // Draws a filled rotatin, expanding circle in the center of the screen
+            // Draws a filled rotating, expanding circle in the center of the screen
             AffineTransform ellipseTransFilled = AffineTransform.getRotateInstance(-angle, x2 + c2.getWidth()/2, y2 + c2.getHeight()/2); // original rotating circle
             Shape transformedFilled = ellipseTransFilled.createTransformedShape(c2);    // circle rotate  
-//            g2.setColor(Color.blue);   // sets color to blue
+//          g2.setColor(Color.blue);   // sets fill color to blue
             g2.fill(transformedFilled);  // fill the rotating, expanding circle
             
             // Draws a rotating square
             AffineTransform trans = AffineTransform.getRotateInstance(angle, x + r.getWidth()/2, y + r.getHeight()/2); // rotates square around its own center         
-//            trans = AffineTransform.getRotateInstance(angle, 50, 50);  // rotates square around the specified point
+          trans = AffineTransform.getRotateInstance(angle, 50, 50);  // rotates square around the specified point
                   
             // draws line that extends as w and h increase 
             g2.draw( new Line2D.Double( x1, y1, w, h ) );  
