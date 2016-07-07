@@ -10,7 +10,6 @@ import java.awt.EventQueue;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -22,7 +21,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -33,39 +31,31 @@ import javax.swing.Timer;
  */
 public class RotatingResizingCircle {
 
-    int x = 50; // upper left corner x
-    int y = 50; // upper left corner y
-    int x1 = 75;
-    int y1 = 75;
-    int x2 = 400;
-    int y2 = 400;
-    int x3 = 110;
-    int y3 = 110;
-    int w = 100;
-    int h = 100;
+    int x = 50;             // upper left corner x-coordinate
+    int y = 50;             // upper left corner y-coordinate
+    int emptyCircleX = 75;    // upper left X of a rectangle defining an empty circle
+    int emptyCircleY = 75;    // upper left Y of a rectangle defining an empty circle
+    int filledCircleX = 400;    // upper left X of a rectangle defining a filled circle
+    int filledCircleY = 400;    // upper left Y of a rectangle defining a filled circle
+    int width = 100;            // width of rectangle defining the circles
+    int height = 100;           // height of rectangle defining the circles
     
-    int cornerX = 250;      // upper left X
-    int cornerY = 250;      // upper left Y
+    int cornerX = 250;      // upper left X of rectangle defining a circle, used to keep center in same spot as circle changes size
+    int cornerY = 250;      // upper left Y of rectangle defining a circle, used to keep center in same spot as circle changes size
     
     int XDiameter = 2; // was 20
     int YDiameter = 2; // was 20    
         
     boolean grow = true;
     
-    
     Rectangle r = new Rectangle(x, y, 15, 15);
     Ellipse2D circleEmpty = new Ellipse2D.Double(0, 0, 0, 0); 
     Ellipse2D circleFilled = new Ellipse2D.Double(0, 0, 0, 0);
-    Polygon gear = new Polygon();
-    double polyAngle = 0.0;
-
     Point center = new Point(125, 125);
-    Polygon poly1;
     
     
     public static void main(String[] args) {
         new RotatingResizingCircle();
-        
     }
     
 
@@ -83,7 +73,6 @@ public class RotatingResizingCircle {
         });
     }
     
-
     
     private class ImageRotationComponent extends JComponent {
 
@@ -97,7 +86,7 @@ public class RotatingResizingCircle {
             angle += 100;       // Changing angle turns the objects
             
             // Draws a filled, rotating, expanding circle in the center of the screen
-            AffineTransform ellipseTransFilled = AffineTransform.getRotateInstance(-angle, x2 + circleFilled.getWidth()/2, y2 + circleFilled.getHeight()/2); // original rotating circle
+            AffineTransform ellipseTransFilled = AffineTransform.getRotateInstance(-angle, filledCircleX + circleFilled.getWidth()/2, filledCircleY + circleFilled.getHeight()/2); // original rotating circle
             Shape transformedFilled = ellipseTransFilled.createTransformedShape(circleFilled);    // circle rotate  
 //          g2.setColor(Color.blue);   // sets fill color to blue
             g2.fill(transformedFilled);  // fill the rotating, expanding circle
@@ -107,20 +96,17 @@ public class RotatingResizingCircle {
 //          trans = AffineTransform.getRotateInstance(angle, 50, 50);  // If enabled, squar rotates around the specified point
                   
             // draws line that extends as w and h increase 
-            g2.draw( new Line2D.Double( x1, y1, w, h ) );  
+            g2.draw(new Line2D.Double( emptyCircleX, emptyCircleY, width, height ) );  
             
             // Draws unfilled, rotating, growing circle
-            AffineTransform ellipseTrans = AffineTransform.getRotateInstance(angle, x1 + (circleEmpty.getWidth()/2), y1 + (circleEmpty.getHeight()/2));      
+            AffineTransform ellipseTrans = AffineTransform.getRotateInstance(angle, emptyCircleX + (circleEmpty.getWidth()/2), emptyCircleY + (circleEmpty.getHeight()/2));      
             Shape newTransformed = ellipseTrans.createTransformedShape(circleEmpty);    // rotate circle  
             g2.draw(newTransformed);            // draw the circle
             
             // Rotating square
             Shape transformedSquare = trans.createTransformedShape(r); // square to rotate
             g2.fill(transformedSquare);     // draw the square
-       
-            // Draw gear polygon
-            g2.draw(gear);
-            
+                  
         }
 
         
@@ -144,28 +130,28 @@ public class RotatingResizingCircle {
         // Enlarge or shrink the cirlces.
         public void SuperSizeCircle() {
 
-            if (w >= 800) {
+            if (width >= 800) {
                 grow = false;
             }
-            if (w <= 2) // was 20 
+            if (width <= 2) // was 20 
             {
                 grow = true;
             }
 
             if (grow) {
-                w += 2; 
-                h += 2; 
-                cornerX -= 1; 
-                cornerY -= 1; 
+                width += 2; 
+                height += 2; 
+      //          cornerX -= 1; 
+        //        cornerY -= 1; 
             } else {
-                w -= 2; 
-                h -= 2; 
-                cornerX += 1; // * XDiameter;
-                cornerY += 1; // * YDiameter;
+                width -= 2; 
+                height -= 2; 
+          //      cornerX += 1; // * XDiameter;
+            //    cornerY += 1; // * YDiameter;
             }
 
-            circleEmpty.setFrame(x1, y1, w, h);       // Unfilled circle
-            circleFilled.setFrame(x2, y2, w, h);      // Black filled circle
+            circleEmpty.setFrame(emptyCircleX, emptyCircleY, width, height);       // Unfilled circle
+            circleFilled.setFrame(filledCircleX, filledCircleY, width, height);      // Black filled circle
         }
         
     }
