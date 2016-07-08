@@ -1,29 +1,14 @@
 package rotatingresizingcircle;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * This program combines applies two types of animation (resizing and rotation) 
+ * to a circle and was conceived to enable the animation of a "machine" that
+ * represents the economy's reaction to changes if inputs.
+ * 
  */
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.io.File;
-import java.io.IOException;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 /**
  *

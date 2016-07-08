@@ -24,20 +24,20 @@ import javax.swing.Timer;
  */
     class ImageRotationComponent extends JComponent {
 
-    int x = 50;             // upper left corner x-coordinate
-    int y = 50;             // upper left corner y-coordinate
-    int emptyCircleX = 75;    // upper left X of a rectangle defining an empty circle
-    int emptyCircleY = 75;    // upper left Y of a rectangle defining an empty circle
+    int x = 50;                 // upper left corner x-coordinate
+    int y = 50;                 // upper left corner y-coordinate
+    int emptyCircleX = 75;      // upper left X of a rectangle defining an empty circle
+    int emptyCircleY = 75;      // upper left Y of a rectangle defining an empty circle
     int filledCircleX = 400;    // upper left X of a rectangle defining a filled circle
     int filledCircleY = 400;    // upper left Y of a rectangle defining a filled circle
     int width = 100;            // width of rectangle defining the circles
     int height = 100;           // height of rectangle defining the circles
     
-    int cornerX = 250;      // upper left X of rectangle defining a circle, used to keep center in same spot as circle changes size
-    int cornerY = 250;      // upper left Y of rectangle defining a circle, used to keep center in same spot as circle changes size
+    int cornerX = 250;          // upper left X of rectangle defining a circle, used to keep center in same spot as circle changes size
+    int cornerY = 250;          // upper left Y of rectangle defining a circle, used to keep center in same spot as circle changes size
     
-    int XDiameter = 2; // was 20
-    int YDiameter = 2; // was 20    
+    int XDiameter = 2; 
+    int YDiameter = 2;     
         
     boolean grow = true;
     
@@ -45,14 +45,15 @@ import javax.swing.Timer;
     Ellipse2D circleEmpty = new Ellipse2D.Double(0, 0, 0, 0); 
     Ellipse2D circleFilled = new Ellipse2D.Double(0, 0, 0, 0);
     Point center = new Point(125, 125);
-        double angle = 0.0;
+    double angle = 0.0;
+    
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             
             Graphics2D g2 = (Graphics2D) g.create();
-            angle += 100;       // Changing angle turns the objects
+      //      angle += 100;       // Changing angle turns the square
             
             // Draws a filled, rotating, expanding circle in the center of the screen
             AffineTransform ellipseTransFilled = AffineTransform.getRotateInstance(-angle, filledCircleX + circleFilled.getWidth()/2, filledCircleY + circleFilled.getHeight()/2); // original rotating circle
@@ -75,6 +76,7 @@ import javax.swing.Timer;
             // Rotating square
             Shape transformedSquare = trans.createTransformedShape(r); // square to rotate
             g2.fill(transformedSquare);     // draw the square
+            
                   
         }
 
