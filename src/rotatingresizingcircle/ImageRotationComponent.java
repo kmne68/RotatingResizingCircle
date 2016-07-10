@@ -5,6 +5,7 @@
  */
 package rotatingresizingcircle;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -52,32 +53,37 @@ import javax.swing.Timer;
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             
+            angle += 100;       // Changing angle rotates shapes            
             Graphics2D g2 = (Graphics2D) g.create();
-      //      angle += 100;       // Changing angle turns the square
-            
+
             // Draws a filled, rotating, expanding circle in the center of the screen
             AffineTransform ellipseTransFilled = AffineTransform.getRotateInstance(-angle, filledCircleX + circleFilled.getWidth()/2, filledCircleY + circleFilled.getHeight()/2); // original rotating circle
             Shape transformedFilled = ellipseTransFilled.createTransformedShape(circleFilled);    // circle rotate  
-//          g2.setColor(Color.blue);   // sets fill color to blue
-            g2.fill(transformedFilled);  // fill the rotating, expanding circle
-            
-            // Draws a rotating square
-            AffineTransform trans = AffineTransform.getRotateInstance(angle, x + r.getWidth()/2, y + r.getHeight()/2); // rotates square around its own center         
-//          trans = AffineTransform.getRotateInstance(angle, 50, 50);  // If enabled, squar rotates around the specified point
-                  
-            // draws line that extends as w and h increase 
-            g2.draw(new Line2D.Double( emptyCircleX, emptyCircleY, width, height ) );  
+            g2.setColor(Color.blue);   // sets fill color to blue
+            g2.draw(transformedFilled);  // fill the rotating, expanding circle
+            g2.setColor(Color.yellow);
+            g2.fill(transformedFilled);
             
             // Draws unfilled, rotating, growing circle
             AffineTransform ellipseTrans = AffineTransform.getRotateInstance(angle, emptyCircleX + (circleEmpty.getWidth()/2), emptyCircleY + (circleEmpty.getHeight()/2));      
-            Shape newTransformed = ellipseTrans.createTransformedShape(circleEmpty);    // rotate circle  
-            g2.draw(newTransformed);            // draw the circle
-            
+            Shape transformedUnfilled = ellipseTrans.createTransformedShape(circleEmpty);    // rotate circle 
+            g2.setColor(Color.green);
+            g2.draw(transformedUnfilled);            // draw the circle            
+                       
+            // Draws a rotating square
+            AffineTransform trans = AffineTransform.getRotateInstance(angle, x + r.getWidth()/2, y + r.getHeight()/2); // rotates square around its own center         
+         // trans = AffineTransform.getRotateInstance(angle, 50, 50);  // If enabled, square rotates around the specified point
+                  
+            // draws line that extends as w and h increase 
+            g2.draw(new Line2D.Double( emptyCircleX, emptyCircleY, width, height ) );  
+                        
             // Rotating square
             Shape transformedSquare = trans.createTransformedShape(r); // square to rotate
             g2.fill(transformedSquare);     // draw the square
             
-                  
+            SuperSizeCircle();      // grow/shrink circles
+            circleEmpty.setFrame(emptyCircleX, emptyCircleY, width, height);        // Unfilled circle
+            circleFilled.setFrame(filledCircleX, filledCircleY, width, height);     // Black filled circle
         }
 
         
@@ -88,13 +94,10 @@ import javax.swing.Timer;
             ActionListener taskPerformer = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-
-                    SuperSizeCircle();      // rotate circle
                     ImageRotationComponent.this.repaint();
                 }
             };
             new Timer(delay, taskPerformer).start();
-            
         }
         
         
@@ -121,8 +124,7 @@ import javax.swing.Timer;
             //    cornerY += 1; // * YDiameter;
             }
 
-            circleEmpty.setFrame(emptyCircleX, emptyCircleY, width, height);       // Unfilled circle
-            circleFilled.setFrame(filledCircleX, filledCircleY, width, height);      // Black filled circle
+
         }
         
     }
