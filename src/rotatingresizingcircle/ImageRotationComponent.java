@@ -48,14 +48,13 @@ import javax.swing.Timer;
     Point center = new Point(125, 125);
     double angle = 0.0;
     
-
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             
             angle += 100;       // Changing angle rotates shapes            
             Graphics2D g2 = (Graphics2D) g.create();
-
+            
             // Draws a filled, rotating, expanding circle in the center of the screen
             AffineTransform ellipseTransFilled = AffineTransform.getRotateInstance(-angle, filledCircleX + circleFilled.getWidth()/2, filledCircleY + circleFilled.getHeight()/2); // original rotating circle
             Shape transformedFilled = ellipseTransFilled.createTransformedShape(circleFilled);    // circle rotate  
@@ -84,10 +83,10 @@ import javax.swing.Timer;
             SuperSizeCircle();      // grow/shrink circles
             circleEmpty.setFrame(emptyCircleX, emptyCircleY, width, height);        // Unfilled circle
             circleFilled.setFrame(filledCircleX, filledCircleY, width, height);     // Black filled circle
-        }
+        } // end paintComponent()
 
         
-        // Call the circle enlargement and image rotation pieces and set them in motion
+        // Call the image rotation pieces and set them in motion
         public ImageRotationComponent() {
             int delay = 100; //milliseconds
             
@@ -98,7 +97,7 @@ import javax.swing.Timer;
                 }
             };
             new Timer(delay, taskPerformer).start();
-        }
+        } // end ImageRotationComponent
         
         
         // Enlarge or shrink the cirlces.
@@ -123,8 +122,5 @@ import javax.swing.Timer;
           //      cornerX += 1; // * XDiameter;
             //    cornerY += 1; // * YDiameter;
             }
-
-
-        }
-        
-    }
+        } // end SuperSizeCircle()
+    } // end ImageRotationComponent
