@@ -39,7 +39,7 @@ import javax.swing.Timer;
     
     int XDiameter = 2; 
     int YDiameter = 2;     
-        
+    int delay = 100;            //timer (milliseconds) for ActionListener
     boolean grow = true;
     
     Rectangle r = new Rectangle(x, y, 15, 15);
@@ -48,6 +48,19 @@ import javax.swing.Timer;
     Point center = new Point(125, 125);
     double angle = 0.0;
     
+        // Class constructor
+        public ImageRotationComponent() {
+            
+            ActionListener taskPerformer = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    ImageRotationComponent.this.repaint();
+                }
+            };
+            
+            new Timer(delay, taskPerformer).start();
+
+        } // end ImageRotationComponent constructor
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -86,20 +99,6 @@ import javax.swing.Timer;
         } // end paintComponent()
 
         
-        // Call the image rotation pieces and set them in motion
-        public ImageRotationComponent() {
-            int delay = 100; //milliseconds
-            
-            ActionListener taskPerformer = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    ImageRotationComponent.this.repaint();
-                }
-            };
-            new Timer(delay, taskPerformer).start();
-        } // end ImageRotationComponent
-        
-        
         // Enlarge or shrink the cirlces.
         public void SuperSizeCircle() {
 
@@ -123,4 +122,5 @@ import javax.swing.Timer;
             //    cornerY += 1; // * YDiameter;
             }
         } // end SuperSizeCircle()
+        
     } // end ImageRotationComponent
