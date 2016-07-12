@@ -33,12 +33,6 @@ import javax.swing.Timer;
     int filledCircleY = 400;    // upper left Y of a rectangle defining a filled circle
     int width = 100;            // width of rectangle defining the circles
     int height = 100;           // height of rectangle defining the circles
-    
-    int cornerX = 250;          // upper left X of rectangle defining a circle, used to keep center in same spot as circle changes size
-    int cornerY = 250;          // upper left Y of rectangle defining a circle, used to keep center in same spot as circle changes size
-    
-    int XDiameter = 2; 
-    int YDiameter = 2;     
     int delay = 100;            //timer (milliseconds) for ActionListener
     boolean grow = true;
     
@@ -104,7 +98,7 @@ import javax.swing.Timer;
         // Enlarge or shrink the cirlces.
         public void SuperSizeCircle() {
 
-            if (width >= 800) {
+            if (width >= 200) {
                 grow = false;
             }
             if (width <= 2) // was 20 
@@ -115,13 +109,9 @@ import javax.swing.Timer;
             if (grow) {
                 width += 2; 
                 height += 2; 
-      //          cornerX -= 1; 
-        //        cornerY -= 1; 
             } else {
                 width -= 2; 
                 height -= 2; 
-          //      cornerX += 1; // * XDiameter;
-            //    cornerY += 1; // * YDiameter;
             }
         } // end SuperSizeCircle()
     } // end ImageRotationComponent
