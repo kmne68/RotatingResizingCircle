@@ -61,6 +61,8 @@ import javax.swing.Timer;
             new Timer(delay, taskPerformer).start();
 
         } // end ImageRotationComponent constructor
+        
+                
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -122,5 +124,4 @@ import javax.swing.Timer;
             //    cornerY += 1; // * YDiameter;
             }
         } // end SuperSizeCircle()
-        
     } // end ImageRotationComponent
