@@ -15,9 +15,12 @@ import java.awt.Point;
  */
 public class Gear {
     
+    
+    private int time;                           // time in seconds
+    
     private int period;                         // time to complete one rotation
     private int teeth;                          // number of teeth on the gear
-    private double rotationalFrequency;         // rotations per unit time
+    private double angularFrequency;         // rotations per unit time
     private double module;                      // a rational number, indicates the tooth size and is the number of mm of pitch circle diameter (p.c.d.) per tooth
     private boolean isWheel;                    // the larger of two interacting gears
     private boolean isPinion;                   // the smaller of two interacting gears
@@ -25,7 +28,7 @@ public class Gear {
     private Point axis;                         // Center of gear.
     private double angleOfAction;               // Angle with vertex at the gear center, one leg on the point where mating teeth first make contact, the other leg on the point where they disengage.
     private double outsideDiameter;             // Diameter at tips of teeth
-    private double rootDiameter;                // Diameter at the base of the teet
+    private double rootDiameter;                // Diameter at the base of the teeth
     private double addendum;                    // Radial distance from the pitch surface to the outermost point of the tooth. {\displaystyle a=(D_{o}-D)/2} a=(D_o-D)/2
     private double dedendum;                    // Radial distance from the depth of the tooth trough to the pitch surface. {\displaystyle b=(D-{\text{root diameter}})/2} b=(D-\text{root diameter})/2
     private double wholeDepth;                  // Addendum plus dedendum   
@@ -60,17 +63,18 @@ public class Gear {
     }
 
     /**
-     * @return the rotationalFrequency
+     * @return the angularFrequency
      */
-    public double getRotationalFrequency() {
-        return rotationalFrequency;
+    public double getAngularFrequency() {
+        return angularFrequency;
     }
 
     /**
-     * @param rotationalFrequency the rotationalFrequency to set
+     * @param angularFrequency the angularFrequency to set
      */
-    public void setRotationalFrequency(double rotationalFrequency) {
-        this.rotationalFrequency = rotationalFrequency;
+    public void setAngularlFrequency(double radians, int seconds) {
+        // 1 RPM = pi /30 rad/second
+        this.angularFrequency = radians / seconds;
     }
 
     /**
@@ -239,6 +243,20 @@ public class Gear {
      */
     public void setDiametralPitch(double diametralPitch) {
         this.diametralPitch = diametralPitch;
+    }
+
+    /**
+     * @return the time
+     */
+    public int getTime() {
+        return time;
+    }
+
+    /**
+     * @param time the time to set
+     */
+    public void setTime(int time) {
+        this.time = time;
     }
     
     
