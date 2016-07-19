@@ -26,18 +26,43 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="label1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="label3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="label1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextField1" pref="60" max="32767" attributes="0"/>
+                                  <Component id="txt_outsideDiameter" max="32767" attributes="0"/>
+                                  <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="label2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="label3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jTextField2" min="-2" pref="57" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textField1" pref="60" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,11 +74,29 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="label2" min="-2" max="-2" attributes="0"/>
-                  <Component id="textField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="label3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="181" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="label3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_outsideDiameter" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,17 +118,64 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lbl_teeth"/>
       </AccessibilityProperties>
     </Component>
-    <Component class="java.awt.TextField" name="textField1">
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txt_teethCount"/>
-      </AccessibilityProperties>
-    </Component>
     <Component class="java.awt.Label" name="label3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gear outside diameter:"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lbl_outsideDiameter"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_outsideDiameter">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Is this a pinion?"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lbl_isPininon"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txt_isPinion"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Calculate"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="btn_calculate"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clear"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="btn_clear"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modulus"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lbl_modulus"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField2">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txt_modulus"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField3">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txt_numberOfTeeth"/>
       </AccessibilityProperties>
     </Component>
   </SubComponents>
